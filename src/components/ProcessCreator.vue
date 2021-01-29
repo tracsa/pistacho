@@ -59,6 +59,7 @@
 
             <button type="button"
               class="btn btn-outline-danger"
+              :disabled="nodes.length === 1"
               @click="deleteNode(i)"
             >
               <font-awesome-icon :icon="['fas', 'trash-alt']"/>
