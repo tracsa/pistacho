@@ -23,6 +23,34 @@
       <p class="card-text">
         <span>{{ node.description }}</span>
       </p>
+
+      <hr/>
+
+      <small class="text-muted ml-1">Forms</small><br/>
+      <div v-for="form, i in node.forms"
+        :key="i"
+        class="border-left border-info pl-2 mb-3"
+      >
+        <div v-for="input, j in form.inputs"
+          :key="j"
+        >
+          <hr class="my-3" v-if="j !== 0">
+
+          <small class="text-muted">Type: <b>{{ input.type }}</b></small><br/>
+          <span>{{ input.label }}</span><br/>
+          <small class="text-muted">Help text: <i>"{{ input.helpText }}"</i></small><br/>
+
+          <div v-if="input.options" class="mt-2">
+            <small class="text-muted">Options:</small><br/>
+            <div v-for="opt, k in input.options"
+              :key="k"
+            >
+              <span>&bull; {{ opt.label }}</span><br/>
+              <small class="text-muted ml-2">Value: {{ opt.value }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

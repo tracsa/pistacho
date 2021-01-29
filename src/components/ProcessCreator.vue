@@ -149,6 +149,41 @@ export default {
           type: 'action',
           title: 'First step',
           description: 'Start a new process by doing this task',
+          forms: [
+            {
+              inputs: [
+                {
+                  type: 'text',
+                  label: 'Your name',
+                  helpText: 'Enter your name, full, please',
+                },
+              ],
+            },
+            {
+              inputs: [
+                {
+                  type: 'text',
+                  label: 'Some text',
+                  helpText: 'Enter some text, whatever you want',
+                },
+                {
+                  type: 'select',
+                  label: 'An option',
+                  helpText: 'Choose any option',
+                  options: [
+                    {
+                      label: 'Opt 1',
+                      value: 'option_1',
+                    },
+                    {
+                      label: 'Another option',
+                      value: 'opt_2',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         }
       ],
 
@@ -165,6 +200,32 @@ export default {
         type: 'action',
         title: 'New amazing node',
         description: 'A simple node',
+        forms: [
+          {
+            inputs: [
+              {
+                type: 'text',
+                label: 'Random text',
+                helpText: 'Enter some random text',
+              },
+              {
+                type: 'select',
+                label: 'Random option',
+                helpText: 'Enter some random text',
+                options: [
+                  {
+                    label: 'First',
+                    value: 1,
+                  },
+                  {
+                    label: 'Second',
+                    value: 2,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       });
     },
 
