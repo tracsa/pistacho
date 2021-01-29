@@ -11,6 +11,7 @@ import {
   faHome,
   faPencilAlt,
   faPlus,
+  faSave,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -32,6 +33,7 @@ library.add(
   faGithub,
   faPencilAlt,
   faPlus,
+  faSave,
   faTrashAlt,
 )
 

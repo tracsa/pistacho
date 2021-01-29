@@ -21,31 +21,60 @@
     >
       <div class="col">
         <div class="d-flex justify-content-between">
-          <component class="mr-3" :is="'app-node-view'" :node="node"/>
+          <component class="mr-3"
+            :is="i === editedNode ? 'app-node-edit' : 'app-node-view'"
+            :node="node"
+          />
 
-          <div class="btn-group-vertical">
-            <button type="button" 
-              class="btn btn-outline-secondary">
+          <div class="btn-group-vertical" style="width: 50px;">
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="i === 0"
+              @click="moveNode(i, 0)"
+            >
               <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
             </button>
             <button type="button"
-              class="btn btn-outline-secondary">
+              class="btn btn-outline-secondary"
+              :disabled="i === 0"
+              @click="moveNode(i, i-1)"
+            >
               <font-awesome-icon :icon="['fas', 'chevron-up']"/>
             </button>
+
             <button type="button"
-              class="btn btn-outline-primary">
+              class="btn btn-outline-success"
+              @click="editedNode = null"
+              v-if="i === editedNode"
+            >
+              <font-awesome-icon :icon="['fas', 'save']"/>
+            </button>
+            <button type="button"
+              class="btn btn-outline-primary"
+              @click="editedNode = i"
+              v-else
+            >
               <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
             </button>
-            <button type="button" 
-              class="btn btn-outline-danger">
+
+            <button type="button"
+              class="btn btn-outline-danger"
+              @click="deleteNode(i)"
+            >
               <font-awesome-icon :icon="['fas', 'trash-alt']"/>
             </button>
             <button type="button"
-              class="btn btn-outline-secondary">
+              class="btn btn-outline-secondary"
+              :disabled="i === nodes.length - 1"
+              @click="moveNode(i, i+1)"
+            >
               <font-awesome-icon :icon="['fas', 'chevron-down']"/>
             </button>
             <button type="button"
-              class="btn btn-outline-secondary">
+              class="btn btn-outline-secondary"
+              :disabled="i === nodes.length - 1"
+              @click="moveNode(i, nodes.length - 1)"
+            >
               <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
             </button>
           </div>
@@ -73,6 +102,7 @@ export default {
   data() {
     return {
       processTitle: 'New awesome process',
+
       nodes: [
         {
           type: 'action',
@@ -80,6 +110,7 @@ export default {
           description: 'Start a new process by doing this task',
         }
       ],
+      editedNode: null,
     };
   },
 
@@ -92,7 +123,23 @@ export default {
         title: 'New amazing node',
         description: 'A simple node',
       });
-    }
+    },
+
+    deleteNode(index) {
+      const vm = this;
+
+      vm.nodes.splice(index, 1);
+    },
+
+    moveNode(from, to) {
+      this.move(this.nodes, from, to);
+    },
+
+    // Utility
+    move(arr, from, to) {
+      const elm = arr.splice(from, 1)[0];
+      arr.splice(to, 0, elm);
+    },
   },
 };
 </script>
