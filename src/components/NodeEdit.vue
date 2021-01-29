@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
   props: {
     node: {
@@ -74,9 +76,7 @@ export default {
       const vm = this;
       if (e.target.value === 'action') {
         if (!vm.node.forms) {
-          vm.node.forms = [{
-            ...vm.defaultForm
-          }];
+          vm.node.forms = [_.cloneDeep(vm.defaultForm)];
         }
       } else if (vm.node.forms) {
         delete vm.node.forms;

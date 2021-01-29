@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
   props: {
     form: {
@@ -80,9 +82,7 @@ export default {
 
       if (['select', 'radio', 'checkbox'].includes(e.target.value)) {
         if (!vm.form.inputs[index].options) {
-          vm.form.inputs[index].options = [{
-            ...vm.defaultOption,
-          }];
+          vm.form.inputs[index].options = [_.cloneDeep(vm.defaultOption)];
         }
       } else if (vm.form.inputs[index].options) {
         delete vm.form.inputs[index].options;
