@@ -2,13 +2,17 @@
   <div class="card border-dark w-100">
     <div class="card-body">
       <div class="card-title">
-        <small class="text-muted">Title</small><br/>
-        <h5>{{ process.title }}</h5>
+        <label>Title</label>
+        <input class="form-control"
+          v-model="process.title"
+        />
 
         <hr/>
 
-        <small class="text-muted">Description</small><br/>
-        <span>{{ process.description }}</span>
+        <label>Description</label>
+        <input class="form-control"
+          v-model="process.description"
+        />
       </div>
     </div>
   </div>

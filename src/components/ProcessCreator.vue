@@ -4,7 +4,30 @@
       <div class="col">
         <h2 class="text-center">Create a process</h2>
 
-        <app-process-view :process="process"/>
+        <div class="d-flex">
+          <component class="mr-3"
+            :is="editingProcess ? 'app-process-edit' : 'app-process-view'"
+            :process="process"
+          />
+
+          <div class="btn-group-vertical" style="width: 50px;">
+            <button type="button"
+              class="btn btn-outline-success"
+              @click="editingProcess = false"
+              v-if="editingProcess"
+            >
+              <font-awesome-icon :icon="['fas', 'save']"/>
+            </button>
+
+            <button type="button"
+              class="btn btn-outline-primary"
+              @click="editingProcess = true"
+              v-else
+            >
+              <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -132,7 +155,9 @@ export default {
           description: 'Start a new process by doing this task',
         }
       ],
+
       editedNode: null,
+      editingProcess: false,
     };
   },
 
