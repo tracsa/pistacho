@@ -2,10 +2,16 @@
   <div id="app">
     <div class="jumbotron">
       <h1 class="display-4">Pistacho</h1>
-      <p class="lead">
-        <span>A simple process builder for </span>
-        <a :href="cacahuateDocsUrl">cacahuate</a>
-        <span> (check it out on <a :href="cacahuateGithubUrl">github</a>)</span>
+      <p class="lead"
+      >A simple process builder for <span class="font-weight-bold">Cacahuate</span>
+
+        <a :href="cacahuateHomeUrl" class="mx-1">
+          <font-awesome-icon :icon="['fas', 'home']"/>
+        </a>
+
+        <a :href="cacahuateGithubUrl" class="mx-1">
+          <font-awesome-icon :icon="['fab', 'github']"/>
+        </a>
       </p>
     </div>
 
@@ -17,7 +23,7 @@
 export default {
   data() {
     return {
-      cacahuateDocsUrl: 'https://tracsa.github.io/cacahuate',
+      cacahuateHomeUrl: 'https://tracsa.github.io/cacahuate',
       cacahuateGithubUrl: 'https://www.github.com/tracsa/cacahuate',
     };
   }

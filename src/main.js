@@ -8,9 +8,14 @@ import {
   faAngleDoubleUp,
   faChevronDown,
   faChevronUp,
+  faHome,
   faPencilAlt,
+  faPlus,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -23,7 +28,10 @@ library.add(
   faAngleDoubleUp,
   faChevronDown,
   faChevronUp,
+  faHome,
+  faGithub,
   faPencilAlt,
+  faPlus,
   faTrashAlt,
 )
 
