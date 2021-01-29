@@ -2,9 +2,14 @@
   <div id="app">
     <div class="jumbotron">
       <h1 class="display-4">Pistacho</h1>
-      <p class="lead">A simple process builder for <a :href="cacahuateUrl">cacahuate</a></p>
+      <p class="lead">
+        <span>A simple process builder for </span>
+        <a :href="cacahuateDocsUrl">cacahuate</a>
+        <span> (check it out on <a :href="cacahuateGithubUrl">github</a>)</span>
+      </p>
     </div>
-    <app-hello-world msg="Welcome to Your Vue.js App"/>
+
+    <app-process-creator/>
   </div>
 </template>
 
@@ -12,7 +17,8 @@
 export default {
   data() {
     return {
-      cacahuateUrl: 'https://github.com/tracsa/cacahuate',
+      cacahuateDocsUrl: 'https://tracsa.github.io/cacahuate',
+      cacahuateGithubUrl: 'https://www.github.com/tracsa/cacahuate',
     };
   }
 };

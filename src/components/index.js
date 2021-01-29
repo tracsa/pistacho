@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
-import HelloWorld from './HelloWorld'
+import NodeView from './NodeView'
+import ProcessCreator from './ProcessCreator'
 
-Vue.component('app-hello-world', HelloWorld)
+Vue.component('app-node-view', NodeView)
+Vue.component('app-process-creator', ProcessCreator)
