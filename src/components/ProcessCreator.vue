@@ -191,7 +191,7 @@ export default {
         }
       ],
 
-      editedNode: 0,
+      editedNode: null,
       editingProcess: false,
 
       defaultNode: {
