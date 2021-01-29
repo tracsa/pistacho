@@ -21,29 +21,33 @@
     >
       <div class="col">
         <div class="d-flex justify-content-between">
-          <div><b>{{ i }}</b></div>
-
-          <component class="mx-3" :is="'app-node-view'" :node="node"/>
+          <component class="mr-3" :is="'app-node-view'" :node="node"/>
 
           <div class="btn-group-vertical">
             <button type="button" 
-              class="btn btn-outline-secondary"
-            >Move top</button>
+              class="btn btn-outline-secondary">
+              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+            </button>
             <button type="button"
-              class="btn btn-outline-secondary"
-            >Move up</button>
+              class="btn btn-outline-secondary">
+              <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+            </button>
             <button type="button"
-              class="btn btn-outline-primary"
-            >Edit</button>
+              class="btn btn-outline-primary">
+              <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
+            </button>
             <button type="button" 
-              class="btn btn-outline-danger"
-            >Delete</button>
+              class="btn btn-outline-danger">
+              <font-awesome-icon :icon="['fas', 'trash-alt']"/>
+            </button>
             <button type="button"
-              class="btn btn-outline-secondary"
-            >Move down</button>
+              class="btn btn-outline-secondary">
+              <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+            </button>
             <button type="button"
-              class="btn btn-outline-secondary"
-            >Move bottom</button>
+              class="btn btn-outline-secondary">
+              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+            </button>
           </div>
         </div>
       </div>

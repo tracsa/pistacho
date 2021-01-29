@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-100">
+  <div class="card border-secondary w-100">
     <div class="card-body">
 
       <div class="card-title">
