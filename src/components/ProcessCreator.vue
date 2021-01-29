@@ -4,6 +4,29 @@
       <div class="col">
         <h2 class="text-center">Create a process</h2>
 
+        <div class="d-flex justify-content-between">
+          <button type="button"
+            class="btn btn-outline-secondary"
+            disabled
+          >
+            <font-awesome-icon :icon="['fas', 'upload']"/>
+            <span class="ml-1">Upload an existing process</span>
+          </button>
+
+          <button type="button"
+            class="btn btn-outline-secondary"
+            :disabled="editingProcess === true"
+          >
+            <font-awesome-icon :icon="['fas', 'file-export']"/>
+            <span class="ml-1">Export to .xlsx</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters mb-3">
+      <div class="col">
+
         <component
           :is="editingProcess ? 'app-process-edit' : 'app-process-view'"
           :process="process"
@@ -24,20 +47,6 @@
             v-else
           >
             <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
-          </button>
-
-          <button type="button"
-            class="btn btn-outline-primary"
-            :disabled="editingProcess === true"
-          >
-            <font-awesome-icon :icon="['fas', 'upload']"/>
-          </button>
-
-          <button type="button"
-            class="btn btn-outline-primary"
-            :disabled="editingProcess === true"
-          >
-            <font-awesome-icon :icon="['fas', 'file-export']"/>
           </button>
         </div>
       </div>
