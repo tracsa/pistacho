@@ -191,16 +191,10 @@ export default {
         }
       ],
 
-      editedNode: null,
+      editedNode: 0,
       editingProcess: false,
-    };
-  },
 
-  methods: {
-    appendNode() {
-      const vm = this;
-
-      vm.nodes.push({
+      defaultNode: {
         type: 'action',
         title: 'New amazing node',
         description: 'A simple node',
@@ -234,7 +228,16 @@ export default {
             ],
           },
         ],
-      });
+      },
+    };
+  },
+
+  methods: {
+    appendNode() {
+      const vm = this;
+
+      vm.nodes.push(vm.defaultNode);
+      vm.editedNode = vm.nodes.length - 1;
     },
 
     deleteNode(index) {
