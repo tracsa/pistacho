@@ -25,6 +25,13 @@
           >
             <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
           </button>
+
+          <button type="button"
+            class="btn btn-outline-primary"
+            :disabled="editingProcess === true"
+          >
+            <font-awesome-icon :icon="['fas', 'download']"/>
+          </button>
         </div>
       </div>
     </div>
