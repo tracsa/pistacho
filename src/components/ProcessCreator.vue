@@ -140,22 +140,22 @@ export default {
   data() {
     return {
       process: {
-        title: 'A brand new process',
-        description: 'A simple process definition',
+        title: 'A brand new process to know about you',
+        description: 'A basic process to ask about one\'s personal life.',
       },
 
       nodes: [
         {
           type: 'action',
-          title: 'First step',
-          description: 'Start a new process by doing this task',
+          title: 'Personal information',
+          description: 'Start a new process by doing this task. Tell us about you.',
           forms: [
             {
               inputs: [
                 {
                   type: 'text',
                   label: 'Your name',
-                  helpText: 'Enter your name, full, please',
+                  helpText: 'A simple input. Just enter your name',
                 },
               ],
             },
@@ -163,21 +163,25 @@ export default {
               inputs: [
                 {
                   type: 'text',
-                  label: 'Some text',
-                  helpText: 'Enter some text, whatever you want',
+                  label: 'What do you like to do?',
+                  helpText: 'Write whatever you like',
                 },
                 {
                   type: 'select',
-                  label: 'An option',
+                  label: 'Which currency do you use more often?',
                   helpText: 'Choose any option',
                   options: [
                     {
-                      label: 'Opt 1',
-                      value: 'option_1',
+                      label: 'Peso mexicano',
+                      value: 'MXN',
                     },
                     {
-                      label: 'Another option',
-                      value: 'opt_2',
+                      label: 'US dolar',
+                      value: 'USD',
+                    },
+                    {
+                      label: 'Euro',
+                      value: 'EUR',
                     },
                   ],
                 },
@@ -205,21 +209,25 @@ export default {
             inputs: [
               {
                 type: 'text',
-                label: 'Random text',
+                label: 'Basic text input',
                 helpText: 'Enter some random text',
               },
               {
                 type: 'select',
-                label: 'Random option',
-                helpText: 'Enter some random text',
+                label: 'Basic selector input',
+                helpText: 'Choose any option',
                 options: [
                   {
-                    label: 'First',
+                    label: 'First option',
                     value: 1,
                   },
                   {
-                    label: 'Second',
+                    label: 'Second option',
                     value: 2,
+                  },
+                  {
+                    label: 'Another option',
+                    value: 'another',
                   },
                 ],
               },

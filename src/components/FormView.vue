@@ -10,7 +10,7 @@
       <small class="text-muted">Help text: <i>"{{ input.helpText }}"</i></small><br/>
 
       <div v-if="input.options" class="mt-2">
-        <small class="text-muted">Options:</small><br/>
+        <small class="text-muted ml-1">Options:</small><br/>
         <div v-for="opt, k in input.options"
           :key="k"
           class="border-left border-warning pl-2 mb-3"
