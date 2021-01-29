@@ -4,7 +4,7 @@
       <div class="col">
         <h2 class="text-center">Create a process</h2>
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-around">
           <button type="button"
             class="btn btn-outline-secondary"
             disabled
