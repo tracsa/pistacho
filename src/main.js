@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAngleDoubleDown,
   faAngleDoubleUp,
+  faArrowDown,
   faChevronDown,
   faChevronUp,
   faHome,
@@ -27,6 +28,7 @@ import '~/components'
 library.add(
   faAngleDoubleDown,
   faAngleDoubleUp,
+  faArrowDown,
   faChevronDown,
   faChevronUp,
   faHome,
