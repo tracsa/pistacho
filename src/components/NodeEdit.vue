@@ -33,32 +33,7 @@
         :key="i"
         class="border-left border-info pl-2 mb-3"
       >
-        <div v-for="input,j in form.inputs"
-          :key="j"
-        >
-          <hr class="my-3" v-if="j !== 0">
-
-          <label>Label</label>
-          <input class="form-control"
-            v-model="input.label"
-          />
-
-          <label>Type</label>
-          <select class="custom-select"
-            v-model="input.type"
-          >
-            <option
-              v-for="option,k in inputTypes"
-              :key="k"
-              :value="option"
-            >{{ option }}</option>
-          </select>
-
-          <label>Help text</label>
-          <input class="form-control"
-            v-model="input.helpText"
-          />
-        </div>
+        <app-form-edit :form="form"/>
       </div>
     </div>
   </div>
@@ -77,13 +52,6 @@ export default {
       nodeTypes: [
         'action',
         'validation',
-      ],
-
-      inputTypes: [
-        'text',
-        'date',
-        'datetime',
-        'select',
       ],
     };
   },

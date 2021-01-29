@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+import FormEdit from './FormEdit'
 import FormView from './FormView'
 import NodeEdit from './NodeEdit'
 import NodeView from './NodeView'
@@ -7,6 +8,7 @@ import ProcessCreator from './ProcessCreator'
 import ProcessEdit from './ProcessEdit'
 import ProcessView from './ProcessView'
 
+Vue.component('app-form-edit', FormEdit)
 Vue.component('app-form-view', FormView)
 Vue.component('app-node-edit', NodeEdit)
 Vue.component('app-node-view', NodeView)
