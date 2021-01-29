@@ -30,7 +30,14 @@
             class="btn btn-outline-primary"
             :disabled="editingProcess === true"
           >
-            <font-awesome-icon :icon="['fas', 'download']"/>
+            <font-awesome-icon :icon="['fas', 'upload']"/>
+          </button>
+
+          <button type="button"
+            class="btn btn-outline-primary"
+            :disabled="editingProcess === true"
+          >
+            <font-awesome-icon :icon="['fas', 'file-export']"/>
           </button>
         </div>
       </div>

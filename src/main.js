@@ -11,13 +11,14 @@ import {
   faChevronUp,
   faClipboardList,
   faClipboardCheck,
-  faDownload,
+  faFileExport,
   faFlag,
   faHome,
   faPencilAlt,
   faPlus,
   faSave,
   faTrashAlt,
+  faUpload,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faGithub,
@@ -37,14 +38,15 @@ library.add(
   faChevronUp,
   faClipboardList,
   faClipboardCheck,
-  faDownload,
-  faHome,
+  faFileExport,
   faFlag,
+  faHome,
   faGithub,
   faPencilAlt,
   faPlus,
   faSave,
   faTrashAlt,
+  faUpload,
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
