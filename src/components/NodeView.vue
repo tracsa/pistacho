@@ -24,14 +24,16 @@
         <span>{{ node.description }}</span>
       </p>
 
-      <hr/>
+      <div v-if="node.forms">
+        <hr/>
 
-      <small class="text-muted ml-1">Forms</small><br/>
-      <div v-for="form,i in node.forms"
-        :key="i"
-        class="border-left border-info pl-2 mb-3"
-      >
-        <app-form-view :form="form"/>
+        <small class="text-muted ml-1">Forms</small><br/>
+        <div v-for="form,i in node.forms"
+          :key="i"
+          class="border-left border-info pl-2 mb-3"
+        >
+          <app-form-view :form="form"/>
+        </div>
       </div>
     </div>
   </div>

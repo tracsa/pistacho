@@ -63,6 +63,8 @@ export default {
         'date',
         'datetime',
         'select',
+        'radio',
+        'checkbox',
       ],
 
       defaultOption: {
@@ -78,7 +80,9 @@ export default {
 
       if (['select', 'radio', 'checkbox'].includes(e.target.value)) {
         if (!vm.form.inputs[index].options) {
-          vm.form.inputs[index].options = [vm.defaultOption];
+          vm.form.inputs[index].options = [{
+            ...vm.defaultOption,
+          }];
         }
       } else if (vm.form.inputs[index].options) {
         delete vm.form.inputs[index].options;
