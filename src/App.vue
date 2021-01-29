@@ -5,7 +5,7 @@
 
       <hr class="my-4"/>
 
-      <p class="lead">A simple process builder for <span class="font-weight-bold">Cacahuate</span>
+      <p class="lead">A simple process creation tool for <span class="font-weight-bold">Cacahuate</span>
 
         <a :href="cacahuateHomeUrl" class="mx-1">
           <font-awesome-icon :icon="['fas', 'home']"/>

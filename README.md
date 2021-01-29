@@ -1,5 +1,7 @@
 # pistacho
 
+A simple process creation tool for **Cacahuate**
+
 ## Project setup
 ```
 npm install
