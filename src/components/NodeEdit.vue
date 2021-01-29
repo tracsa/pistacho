@@ -7,6 +7,17 @@
         <input class="form-control"
           v-model="node.title"
         />
+
+        <label>Type</label>
+        <select class="custom-select"
+          v-model="node.type"
+        >
+          <option
+            v-for="option,i in nodeTypes"
+            :key="i"
+            :value="option"
+          >{{ option }}</option>
+        </select>
       </div>
 
       <hr/>
@@ -25,6 +36,15 @@ export default {
     node: {
       required: true,
     }
+  },
+
+  data() {
+    return {
+      nodeTypes: [
+        'action',
+        'validation',
+      ],
+    };
   },
 };
 </script>
