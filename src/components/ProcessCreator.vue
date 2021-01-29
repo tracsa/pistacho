@@ -46,7 +46,7 @@
             </button>
             <button type="button"
               class="btn btn-outline-secondary">
-              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+              <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
             </button>
           </div>
         </div>
