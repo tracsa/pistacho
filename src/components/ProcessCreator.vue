@@ -2,14 +2,22 @@
   <div class="container">
     <div class="row mb-3">
       <div class="col">
-        <h2>Create a process</h2>
+        <h2 class="text-center">Create a process</h2>
 
-        <div class="card">
+        <app-process-view :process="process"/>
+      </div>
+    </div>
+
+    <hr class="my-4"/>
+
+    <div class="row mb-3">
+      <div class="col text-center">
+        <div class="card bg-success text-white">
           <div class="card-body">
-            <h5 class="card-title">Process info</h5>
-            <span>Title: "{{ processTitle }}"</span>
-            <br/>
-            <span>Node count: {{ nodes.length }}</span>
+            <div class="card-text">
+              <font-awesome-icon :icon="['fas', 'flag']" class="mr-1"/>
+              <span>Start Here</span>
+            </div>
           </div>
         </div>
       </div>
@@ -19,6 +27,14 @@
       v-for="(node,i) in nodes"
       :key="i"
     >
+      <div class="row mb-3"
+        v-if="i < nodes.length"
+      >
+        <div class="col text-center">
+          <font-awesome-icon :icon="['fas', 'arrow-down']"/>
+        </div>
+      </div>
+
       <div class="row mb-3">
         <div class="col">
           <div class="d-flex justify-content-between">
@@ -83,14 +99,6 @@
           </div>
         </div>
       </div>
-
-      <div class="row mb-3"
-        v-if="i < nodes.length - 1"
-      >
-        <div class="col text-center">
-          <font-awesome-icon :icon="['fas', 'arrow-down']"/>
-        </div>
-      </div>
     </span>
 
     <div class="row mb-3">
@@ -112,7 +120,10 @@
 export default {
   data() {
     return {
-      processTitle: 'New awesome process',
+      process: {
+        title: 'A brand new process',
+        description: 'A simple process definition',
+      },
 
       nodes: [
         {
