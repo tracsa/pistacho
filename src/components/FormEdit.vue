@@ -13,6 +13,7 @@
       <label>Type</label>
       <select class="custom-select"
         v-model="input.type"
+        @change="updateInputType(i, $event)"
       >
         <option
           v-for="option,j in inputTypes"
@@ -63,7 +64,26 @@ export default {
         'datetime',
         'select',
       ],
+
+      defaultOption: {
+        label: 'Default option',
+        value: 'something',
+      },
     };
+  },
+
+  methods: {
+    updateInputType(index, e) {
+      const vm = this;
+
+      if (['select', 'radio', 'checkbox'].includes(e.target.value)) {
+        if (!vm.form.inputs[index].options) {
+          vm.form.inputs[index].options = [vm.defaultOption];
+        }
+      } else if (vm.form.inputs[index].options) {
+        delete vm.form.inputs[index].options;
+      }
+    },
   },
 };
 </script>
