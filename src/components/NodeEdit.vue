@@ -14,8 +14,8 @@
           @change="updateNodeType($event)"
         >
           <option
-            v-for="option,i in nodeTypes"
-            :key="i"
+            v-for="option,optionIter in nodeTypes"
+            :key="optionIter"
             :value="option"
           >{{ option }}</option>
         </select>
@@ -31,8 +31,8 @@
       <div v-if="node.forms">
         <hr/>
         <small class="text-muted ml-1">Forms</small><br/>
-        <div v-for="form,i in node.forms"
-          :key="i"
+        <div v-for="form,formIter in node.forms"
+          :key="formIter"
           class="border-left border-info pl-2 mb-3"
         >
           <app-form-edit :form="form"/>
@@ -41,15 +41,15 @@
             <div class="btn-group">
               <button type="button"
                 class="btn btn-outline-info text-dark"
-                :disabled="i === 0"
-                @click="moveForm(i, 0)"
+                :disabled="formIter === 0"
+                @click="moveForm(formIter, 0)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-info text-dark"
-                :disabled="i === 0"
-                @click="moveForm(i, i-1)"
+                :disabled="formIter === 0"
+                @click="moveForm(formIter, formIter-1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-up']"/>
               </button>
@@ -57,22 +57,22 @@
               <button type="button"
                 class="btn btn-outline-danger text-dark"
                 :disabled="node.forms.length === 1"
-                @click="deleteForm(i)"
+                @click="deleteForm(formIter)"
               >
                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
               </button>
 
               <button type="button"
                 class="btn btn-outline-info text-dark"
-                :disabled="i === node.forms.length - 1"
-                @click="moveForm(i, i+1)"
+                :disabled="formIter === node.forms.length - 1"
+                @click="moveForm(formIter, formIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-info text-dark"
-                :disabled="i === node.forms.length - 1"
-                @click="moveForm(i, node.forms.length - 1)"
+                :disabled="formIter === node.forms.length - 1"
+                @click="moveForm(formIter, node.forms.length - 1)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
               </button>
@@ -81,7 +81,7 @@
                 type="button"
                 class="btn btn-outline-info text-dark"
                 @click="appendForm()"
-                v-if="i === node.forms.length - 1"
+                v-if="formIter === node.forms.length - 1"
               >
                 <font-awesome-icon :icon="['fas', 'plus']"/>
                 <span class="ml-1">Add another form</span>

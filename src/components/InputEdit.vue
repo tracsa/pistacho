@@ -11,8 +11,8 @@
         @change="updateInputType($event)"
       >
         <option
-          v-for="option,j in inputTypes"
-          :key="j"
+          v-for="option,optionIter in inputTypes"
+          :key="optionIter"
           :value="option"
         >{{ option }}</option>
       </select>
@@ -24,33 +24,33 @@
 
       <div v-if="input.options" class="mt-2">
         <small class="text-muted ml-1">Options:</small><br/>
-        <div v-for="opt, k in input.options"
-          :key="k"
+        <div v-for="option,optionIter in input.options"
+          :key="optionIter"
           class="border-left border-warning pl-2 mb-3"
         >
           <label>Label</label>
           <input class="form-control"
-            v-model="opt.label"
+            v-model="option.label"
           />
 
           <label>Value</label>
           <input class="form-control"
-            v-model="opt.value"
+            v-model="option.value"
           />
 
           <div class="text-right">
             <div class="btn-group">
               <button type="button"
                 class="btn btn-outline-warning text-dark"
-                :disabled="k === 0"
+                :disabled="optionIter === 0"
                 @click="moveOption(i, 0)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-warning text-dark"
-                :disabled="k === 0"
-                @click="moveOption(k, k-1)"
+                :disabled="optionIter === 0"
+                @click="moveOption(optionIter, optionIter-1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-up']"/>
               </button>
@@ -58,21 +58,21 @@
               <button type="button"
                 class="btn btn-outline-danger text-dark"
                 :disabled="input.options.length === 1"
-                @click="deleteOption(k)"
+                @click="deleteOption(optionIter)"
               >
                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-warning text-dark"
-                :disabled="k === input.options.length - 1"
-                @click="moveOption(k, k+1)"
+                :disabled="optionIter === input.options.length - 1"
+                @click="moveOption(optionIter, optionIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-warning text-dark"
-                :disabled="k === input.options.length - 1"
-                @click="moveOption(k, input.options.length - 1)"
+                :disabled="optionIter === input.options.length - 1"
+                @click="moveOption(optionIter, input.options.length - 1)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
               </button>
@@ -81,7 +81,7 @@
                 type="button"
                 class="btn btn-outline-warning text-dark"
                 @click="appendOption()"
-                v-if="k === input.options.length - 1"
+                v-if="optionIter === input.options.length - 1"
               >
                 <font-awesome-icon :icon="['fas', 'plus']"/>
                 <span class="ml-1">Add option</span>

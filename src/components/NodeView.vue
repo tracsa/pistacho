@@ -28,8 +28,8 @@
         <hr/>
 
         <small class="text-muted ml-1">Forms</small><br/>
-        <div v-for="form,i in node.forms"
-          :key="i"
+        <div v-for="form,formIter in node.forms"
+          :key="formIter"
           class="border-left border-info pl-2 mb-3"
         >
           <app-form-view :form="form"/>

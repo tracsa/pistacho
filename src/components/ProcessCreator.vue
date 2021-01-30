@@ -70,11 +70,11 @@
     </div>
 
     <span
-      v-for="(node,i) in nodes"
-      :key="i"
+      v-for="node,nodeIter in nodes"
+      :key="nodeIter"
     >
       <div class="row no-gutters mb-3"
-        v-if="i < nodes.length"
+        v-if="nodeIter < nodes.length"
       >
         <div class="col text-center">
           <font-awesome-icon :icon="['fas', 'arrow-down']"/>
@@ -84,7 +84,7 @@
       <div class="row no-gutters mb-3">
         <div class="col">
           <component
-            :is="i === editedNode ? 'app-node-edit' : 'app-node-view'"
+            :is="nodeIter === editedNode ? 'app-node-edit' : 'app-node-view'"
             :node="node"
           />
 
@@ -92,15 +92,15 @@
             <div class="btn-group">
               <button type="button"
                 class="btn btn-outline-secondary"
-                :disabled="i === 0"
-                @click="moveNode(i, 0)"
+                :disabled="nodeIter === 0"
+                @click="moveNode(nodeIter, 0)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-secondary"
-                :disabled="i === 0"
-                @click="moveNode(i, i-1)"
+                :disabled="nodeIter === 0"
+                @click="moveNode(nodeIter, nodeIter-1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-up']"/>
               </button>
@@ -108,13 +108,13 @@
               <button type="button"
                 class="btn btn-outline-secondary"
                 @click="editedNode = null"
-                v-if="i === editedNode"
+                v-if="nodeIter === editedNode"
               >
                 <font-awesome-icon :icon="['fas', 'save']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-secondary"
-                @click="editedNode = i"
+                @click="editedNode = nodeIter"
                 v-else
               >
                 <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
@@ -123,21 +123,21 @@
               <button type="button"
                 class="btn btn-outline-danger"
                 :disabled="nodes.length === 1"
-                @click="deleteNode(i)"
+                @click="deleteNode(nodeIter)"
               >
                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-secondary"
-                :disabled="i === nodes.length - 1"
-                @click="moveNode(i, i+1)"
+                :disabled="nodeIter === nodes.length - 1"
+                @click="moveNode(nodeIter, nodeIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
                 class="btn btn-outline-secondary"
-                :disabled="i === nodes.length - 1"
-                @click="moveNode(i, nodes.length - 1)"
+                :disabled="nodeIter === nodes.length - 1"
+                @click="moveNode(nodeIter, nodes.length - 1)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
               </button>
@@ -146,7 +146,7 @@
                 type="button"
                 class="btn btn-outline-secondary"
                 @click="appendNode()"
-                v-if="i === nodes.length - 1"
+                v-if="nodeIter === nodes.length - 1"
               >
                 <font-awesome-icon :icon="['fas', 'plus']"/>
                 <span class="ml-1">Add node</span>

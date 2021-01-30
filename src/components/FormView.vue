@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-for="input,i in form.inputs"
-      :key="i"
+    <div v-for="input,inputIter in form.inputs"
+      :key="inputIter"
     >
-      <hr class="my-3" v-if="i !== 0">
+      <hr class="my-3" v-if="inputIter !== 0">
 
       <app-input-view :input="input"/>
     </div>
