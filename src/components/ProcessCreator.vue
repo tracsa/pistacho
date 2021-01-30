@@ -13,13 +13,15 @@
             <span class="ml-1">Upload an existing process</span>
           </button>
 
-          <button type="button"
+          <vue-excel-xlsx
+            :sheets="sheets"
+            :filename="filename"
             class="btn btn-outline-secondary"
             :disabled="editingProcess === true"
           >
             <font-awesome-icon :icon="['fas', 'file-export']"/>
             <span class="ml-1">Export to .xlsx</span>
-          </button>
+          </vue-excel-xlsx>
         </div>
       </div>
     </div>
@@ -260,7 +262,32 @@ export default {
   computed: {
     filename() {
       return _.kebabCase(this.process.title);
-    }
+    },
+
+    sheets() {
+      const vm = this;
+
+      return [
+        {
+          name: 'Process definition',
+          columns: [
+            {
+              field: 'type',
+              label: 'Type',
+            },
+            {
+              field: 'title',
+              label: 'Title',
+            },
+            {
+              field: 'description',
+              label: 'Description',
+            },
+          ],
+          data: vm.nodes,
+        },
+      ];
+    },
   },
 
   methods: {
