@@ -38,54 +38,57 @@
             v-model="opt.value"
           />
 
-          <div class="btn-group">
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="k === 0"
-              @click="moveOption(i, 0)"
-            >
-              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="k === 0"
-              @click="moveOption(k, k-1)"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-up']"/>
-            </button>
+          <div class="text-right">
+            <div class="btn-group">
+              <button type="button"
+                class="btn btn-outline-warning text-dark"
+                :disabled="k === 0"
+                @click="moveOption(i, 0)"
+              >
+                <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-warning text-dark"
+                :disabled="k === 0"
+                @click="moveOption(k, k-1)"
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+              </button>
 
-            <button type="button"
-              class="btn btn-outline-danger"
-              :disabled="input.options.length === 1"
-              @click="deleteOption(k)"
-            >
-              <font-awesome-icon :icon="['fas', 'trash-alt']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="k === input.options.length - 1"
-              @click="moveOption(k, k+1)"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-down']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="k === input.options.length - 1"
-              @click="moveOption(k, input.options.length - 1)"
-            >
-              <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
-            </button>
+              <button type="button"
+                class="btn btn-outline-warning text-dark"
+                :disabled="input.options.length === 1"
+                @click="deleteOption(k)"
+              >
+                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-warning text-dark"
+                :disabled="k === input.options.length - 1"
+                @click="moveOption(k, k+1)"
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-warning text-dark"
+                :disabled="k === input.options.length - 1"
+                @click="moveOption(k, input.options.length - 1)"
+              >
+                <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-warning text-dark"
+                @click="appendOption()"
+                v-if="k === input.options.length - 1"
+              >
+                <font-awesome-icon :icon="['fas', 'plus']"/>
+                <span class="ml-1">Add option</span>
+              </button>
+            </div>
           </div>
         </div>
-
-        <button
-          type="button"
-          class="btn btn-warning w-100"
-          @click="appendOption()"
-        >
-          <font-awesome-icon :icon="['fas', 'plus']"/>
-          <span class="ml-1">Add option</span>
-        </button>
       </div>
   </div>
 </template>

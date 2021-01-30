@@ -37,55 +37,58 @@
         >
           <app-form-edit :form="form"/>
 
-          <div class="btn-group">
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === 0"
-              @click="moveForm(i, 0)"
-            >
-              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === 0"
-              @click="moveForm(i, i-1)"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-up']"/>
-            </button>
+          <div class="text-right">
+            <div class="btn-group">
+              <button type="button"
+                class="btn btn-outline-info text-dark"
+                :disabled="i === 0"
+                @click="moveForm(i, 0)"
+              >
+                <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-info text-dark"
+                :disabled="i === 0"
+                @click="moveForm(i, i-1)"
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+              </button>
 
-            <button type="button"
-              class="btn btn-outline-danger"
-              :disabled="node.forms.length === 1"
-              @click="deleteForm(i)"
-            >
-              <font-awesome-icon :icon="['fas', 'trash-alt']"/>
-            </button>
+              <button type="button"
+                class="btn btn-outline-info text-dark"
+                :disabled="node.forms.length === 1"
+                @click="deleteForm(i)"
+              >
+                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
+              </button>
 
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === node.forms.length - 1"
-              @click="moveForm(i, i+1)"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-down']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === node.forms.length - 1"
-              @click="moveForm(i, node.forms.length - 1)"
-            >
-              <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
-            </button>
+              <button type="button"
+                class="btn btn-outline-info text-dark"
+                :disabled="i === node.forms.length - 1"
+                @click="moveForm(i, i+1)"
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-info text-dark"
+                :disabled="i === node.forms.length - 1"
+                @click="moveForm(i, node.forms.length - 1)"
+              >
+                <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-info text-dark"
+                @click="appendForm()"
+                v-if="i === node.forms.length - 1"
+              >
+                <font-awesome-icon :icon="['fas', 'plus']"/>
+                <span class="ml-1">Add another form</span>
+              </button>
+            </div>
           </div>
         </div>
-
-        <button
-          type="button"
-          class="btn btn-info w-100"
-          @click="appendForm()"
-        >
-          <font-awesome-icon :icon="['fas', 'plus']"/>
-          <span class="ml-1">Add form</span>
-        </button>
       </div>
     </div>
   </div>

@@ -88,75 +88,74 @@
             :node="node"
           />
 
-          <div class="btn-group">
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === 0"
-              @click="moveNode(i, 0)"
-            >
-              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === 0"
-              @click="moveNode(i, i-1)"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-up']"/>
-            </button>
+          <div class="text-right">
+            <div class="btn-group">
+              <button type="button"
+                class="btn btn-outline-secondary"
+                :disabled="i === 0"
+                @click="moveNode(i, 0)"
+              >
+                <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-secondary"
+                :disabled="i === 0"
+                @click="moveNode(i, i-1)"
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+              </button>
 
-            <button type="button"
-              class="btn btn-outline-success"
-              @click="editedNode = null"
-              v-if="i === editedNode"
-            >
-              <font-awesome-icon :icon="['fas', 'save']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-primary"
-              @click="editedNode = i"
-              v-else
-            >
-              <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
-            </button>
+              <button type="button"
+                class="btn btn-outline-secondary"
+                @click="editedNode = null"
+                v-if="i === editedNode"
+              >
+                <font-awesome-icon :icon="['fas', 'save']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-secondary"
+                @click="editedNode = i"
+                v-else
+              >
+                <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
+              </button>
 
-            <button type="button"
-              class="btn btn-outline-danger"
-              :disabled="nodes.length === 1"
-              @click="deleteNode(i)"
-            >
-              <font-awesome-icon :icon="['fas', 'trash-alt']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === nodes.length - 1"
-              @click="moveNode(i, i+1)"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-down']"/>
-            </button>
-            <button type="button"
-              class="btn btn-outline-secondary"
-              :disabled="i === nodes.length - 1"
-              @click="moveNode(i, nodes.length - 1)"
-            >
-              <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
-            </button>
+              <button type="button"
+                class="btn btn-outline-secondary"
+                :disabled="nodes.length === 1"
+                @click="deleteNode(i)"
+              >
+                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-secondary"
+                :disabled="i === nodes.length - 1"
+                @click="moveNode(i, i+1)"
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+              </button>
+              <button type="button"
+                class="btn btn-outline-secondary"
+                :disabled="i === nodes.length - 1"
+                @click="moveNode(i, nodes.length - 1)"
+              >
+                <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                @click="appendNode()"
+                v-if="i === nodes.length - 1"
+              >
+                <font-awesome-icon :icon="['fas', 'plus']"/>
+                <span class="ml-1">Add node</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </span>
-
-    <div class="row no-gutters mb-3">
-      <div class="col">
-        <button
-          type="button"
-          class="btn btn-secondary w-100"
-          @click="appendNode()"
-        >
-          <font-awesome-icon :icon="['fas', 'plus']"/>
-          <span class="ml-1">Add node</span>
-        </button>
-      </div>
-    </div>
   </div>
 </template>
 
