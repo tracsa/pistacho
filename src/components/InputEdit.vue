@@ -56,7 +56,7 @@
               </button>
 
               <button type="button"
-                class="btn btn-outline-warning text-dark"
+                class="btn btn-outline-danger text-dark"
                 :disabled="input.options.length === 1"
                 @click="deleteOption(k)"
               >

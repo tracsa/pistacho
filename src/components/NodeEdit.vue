@@ -55,7 +55,7 @@
               </button>
 
               <button type="button"
-                class="btn btn-outline-info text-dark"
+                class="btn btn-outline-danger text-dark"
                 :disabled="node.forms.length === 1"
                 @click="deleteForm(i)"
               >
