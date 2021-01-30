@@ -7,6 +7,7 @@ import NodeView from './NodeView'
 import ProcessCreator from './ProcessCreator'
 import ProcessEdit from './ProcessEdit'
 import ProcessView from './ProcessView'
+import VueExcelXlsx from './VueExcelXlsx'
 
 Vue.component('app-form-edit', FormEdit)
 Vue.component('app-form-view', FormView)
@@ -15,3 +16,4 @@ Vue.component('app-node-view', NodeView)
 Vue.component('app-process-creator', ProcessCreator)
 Vue.component('app-process-edit', ProcessEdit)
 Vue.component('app-process-view', ProcessView)
+Vue.component('vue-excel-xlsx', VueExcelXlsx)
