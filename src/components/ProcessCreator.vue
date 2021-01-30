@@ -148,7 +148,7 @@
         <button
           type="button"
           class="btn btn-primary w-100"
-          @click.prevent="appendNode()"
+          @click="appendNode()"
         >
           <font-awesome-icon :icon="['fas', 'plus']"/>
           <span class="ml-1">Add node</span>
