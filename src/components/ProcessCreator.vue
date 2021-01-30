@@ -34,7 +34,7 @@
           :process="process"
         />
 
-        <div class="btn-group float-right">
+        <div class="btn-group">
           <button type="button"
             class="btn btn-outline-success"
             @click="editingProcess = false"
@@ -88,7 +88,7 @@
             :node="node"
           />
 
-          <div class="btn-group float-right">
+          <div class="btn-group">
             <button type="button"
               class="btn btn-outline-secondary"
               :disabled="i === 0"
@@ -149,7 +149,7 @@
       <div class="col">
         <button
           type="button"
-          class="btn btn-primary w-100"
+          class="btn btn-secondary w-100"
           @click="appendNode()"
         >
           <font-awesome-icon :icon="['fas', 'plus']"/>
@@ -304,14 +304,14 @@ export default {
       vm.nodes.splice(index, 1);
     },
 
-    moveNode(from, to) {
-      this.move(this.nodes, from, to);
+    moveNode(fromIndex, toIndex) {
+      this.move(this.nodes, fromIndex, toIndex);
     },
 
     // Utility
-    move(arr, from, to) {
-      const elm = arr.splice(from, 1)[0];
-      arr.splice(to, 0, elm);
+    // TODO: Dry. Move to a helper file
+    move(arr, fromIndex, toIndex) {
+      arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0]);
     },
   },
 };

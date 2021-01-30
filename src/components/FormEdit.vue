@@ -88,6 +88,12 @@ export default {
         delete vm.form.inputs[index].options;
       }
     },
+
+    // Utility
+    // TODO: Dry. Move to a helper file
+    move(arr, fromIndex, toIndex) {
+      arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0]);
+    },
   },
 };
 </script>

@@ -36,7 +36,56 @@
           class="border-left border-info pl-2 mb-3"
         >
           <app-form-edit :form="form"/>
+
+          <div class="btn-group">
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="i === 0"
+              @click="moveForm(i, 0)"
+            >
+              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+            </button>
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="i === 0"
+              @click="moveForm(i, i-1)"
+            >
+              <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+            </button>
+
+            <button type="button"
+              class="btn btn-outline-danger"
+              :disabled="node.forms.length === 1"
+              @click="deleteForm(i)"
+            >
+              <font-awesome-icon :icon="['fas', 'trash-alt']"/>
+            </button>
+
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="i === node.forms.length - 1"
+              @click="moveForm(i, i+1)"
+            >
+              <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+            </button>
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="i === node.forms.length - 1"
+              @click="moveForm(i, node.forms.length - 1)"
+            >
+              <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
+            </button>
+          </div>
         </div>
+
+        <button
+          type="button"
+          class="btn btn-info w-100"
+          @click="appendForm()"
+        >
+          <font-awesome-icon :icon="['fas', 'plus']"/>
+          <span class="ml-1">Add form</span>
+        </button>
       </div>
     </div>
   </div>
@@ -72,6 +121,18 @@ export default {
   },
 
   methods: {
+    appendForm() {
+      const vm = this;
+
+      vm.node.forms.push(_.cloneDeep(vm.defaultForm));
+    },
+
+    deleteForm(index) {
+      const vm = this;
+
+      vm.node.forms.splice(index, 1);
+    },
+
     updateNodeType(e) {
       const vm = this;
       if (e.target.value === 'action') {
@@ -81,6 +142,16 @@ export default {
       } else if (vm.node.forms) {
         delete vm.node.forms;
       }
+    },
+
+    moveForm(fromIndex, toIndex) {
+      this.move(this.node.forms, fromIndex, toIndex);
+    },
+
+    // Utility
+    // TODO: Dry. Move to a helper file
+    move(arr, fromIndex, toIndex) {
+      arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0]);
     },
   },
 };
