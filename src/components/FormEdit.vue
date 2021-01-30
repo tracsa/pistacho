@@ -70,16 +70,16 @@ export default {
     form: {
       required: true,
     },
+  },
 
-    defaultInput: {
-      inputs: [
-        {
-          type: 'text',
-          label: 'Basic text input',
-          helpText: 'Enter some random text',
-        },
-      ],
-    },
+  data() {
+    return {
+      defaultInput: {
+        type: 'text',
+        label: 'Basic text input',
+        helpText: 'Enter some random text',
+      },
+    };
   },
 
   methods: {
