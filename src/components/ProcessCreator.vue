@@ -257,6 +257,12 @@ export default {
     };
   },
 
+  computed: {
+    filename() {
+      return _.kebabCase(this.process.title);
+    }
+  },
+
   methods: {
     appendNode() {
       const vm = this;
