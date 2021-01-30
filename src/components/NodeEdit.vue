@@ -1,6 +1,6 @@
 <template>
   <div class="card border-secondary w-100">
-    <div class="card-body">
+    <div class="card-body px-3">
 
       <div class="card-title">
         <label>Title</label>
@@ -33,21 +33,21 @@
         <small class="text-muted ml-1">Forms</small><br/>
         <div v-for="form,formIter in node.forms"
           :key="formIter"
-          class="border-left border-info pl-2 mb-3"
+          class="border-left border-bottom border-primary pl-2 mb-3"
         >
           <app-form-edit :form="form"/>
 
           <div class="text-right">
             <div class="btn-group">
               <button type="button"
-                class="btn btn-outline-info text-dark"
+                class="btn btn-outline-primary text-dark"
                 :disabled="formIter === 0"
                 @click="moveForm(formIter, 0)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-info text-dark"
+                class="btn btn-outline-primary text-dark"
                 :disabled="formIter === 0"
                 @click="moveForm(formIter, formIter-1)"
               >
@@ -63,14 +63,14 @@
               </button>
 
               <button type="button"
-                class="btn btn-outline-info text-dark"
+                class="btn btn-outline-primary text-dark"
                 :disabled="formIter === node.forms.length - 1"
                 @click="moveForm(formIter, formIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-info text-dark"
+                class="btn btn-outline-primary text-dark"
                 :disabled="formIter === node.forms.length - 1"
                 @click="moveForm(formIter, node.forms.length - 1)"
               >
@@ -79,12 +79,12 @@
 
               <button
                 type="button"
-                class="btn btn-outline-info text-dark"
+                class="btn btn-outline-primary text-dark"
                 @click="appendForm()"
                 v-if="formIter === node.forms.length - 1"
               >
                 <font-awesome-icon :icon="['fas', 'plus']"/>
-                <span class="ml-1">Add another form</span>
+                <span class="ml-1">Add form</span>
               </button>
             </div>
           </div>

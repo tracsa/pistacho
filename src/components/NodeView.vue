@@ -1,6 +1,6 @@
 <template>
   <div class="card border-secondary w-100">
-    <div class="card-body">
+    <div class="card-body px-3">
 
       <div class="card-title">
         <small class="text-muted ml-1">Title</small><br/>
@@ -30,7 +30,7 @@
         <small class="text-muted ml-1">Forms</small><br/>
         <div v-for="form,formIter in node.forms"
           :key="formIter"
-          class="border-left border-info pl-2 mb-3"
+          class="border-left border-primary pl-2 mb-3"
         >
           <app-form-view :form="form"/>
         </div>

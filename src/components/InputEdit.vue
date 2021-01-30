@@ -26,7 +26,7 @@
         <small class="text-muted ml-1">Options:</small><br/>
         <div v-for="option,optionIter in input.options"
           :key="optionIter"
-          class="border-left border-warning pl-2 mb-3"
+          class="border-left border-bottom border-warning pl-2 mb-3"
         >
           <label>Label</label>
           <input class="form-control"

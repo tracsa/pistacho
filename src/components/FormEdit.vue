@@ -1,23 +1,23 @@
 <template>
   <div>
+    <small class="text-muted ml-1">Inputs</small><br/>
     <div v-for="input,inputIter in form.inputs"
       :key="inputIter"
+      class="border-left border-bottom border-secondary pl-2 mb-3"
     >
-      <hr class="my-3" v-if="inputIter !== 0">
-
       <app-input-edit :input="input"/>
 
       <div class="text-right">
         <div class="btn-group">
           <button type="button"
-            class="btn btn-outline-primary text-dark"
+            class="btn btn-outline-secondary text-dark"
             :disabled="inputIter === 0"
             @click="moveInput(inputIter, 0)"
           >
             <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
           </button>
           <button type="button"
-            class="btn btn-outline-primary text-dark"
+            class="btn btn-outline-secondary text-dark"
             :disabled="inputIter === 0"
             @click="moveInput(inputIter, inputIter-1)"
           >
@@ -33,14 +33,14 @@
           </button>
 
           <button type="button"
-            class="btn btn-outline-primary text-dark"
+            class="btn btn-outline-secondary text-dark"
             :disabled="inputIter === form.inputs.length - 1"
             @click="moveInput(inputIter, inputIter+1)"
           >
             <font-awesome-icon :icon="['fas', 'chevron-down']"/>
           </button>
           <button type="button"
-            class="btn btn-outline-primary text-dark"
+            class="btn btn-outline-secondary text-dark"
             :disabled="inputIter === form.inputs.length - 1"
             @click="moveInput(inputIter, form.inputs.length - 1)"
           >
@@ -49,12 +49,12 @@
 
           <button
             type="button"
-            class="btn btn-outline-primary text-dark"
+            class="btn btn-outline-secondary text-dark"
             @click="appendInput()"
             v-if="inputIter === form.inputs.length - 1"
           >
             <font-awesome-icon :icon="['fas', 'plus']"/>
-            <span class="ml-1">Add another input</span>
+            <span class="ml-1">Add input</span>
           </button>
         </div>
       </div>

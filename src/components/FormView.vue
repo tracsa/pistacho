@@ -1,10 +1,10 @@
 <template>
   <div>
+    <small class="text-muted ml-1">Inputs</small><br/>
     <div v-for="input,inputIter in form.inputs"
       :key="inputIter"
+      class="border-left border-secondary pl-2 mb-3"
     >
-      <hr class="my-3" v-if="inputIter !== 0">
-
       <app-input-view :input="input"/>
     </div>
   </div>
