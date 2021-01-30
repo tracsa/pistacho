@@ -37,7 +37,55 @@
           <input class="form-control"
             v-model="opt.value"
           />
+
+          <div class="btn-group">
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="k === 0"
+              @click="moveOption(i, 0)"
+            >
+              <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
+            </button>
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="k === 0"
+              @click="moveOption(k, k-1)"
+            >
+              <font-awesome-icon :icon="['fas', 'chevron-up']"/>
+            </button>
+
+            <button type="button"
+              class="btn btn-outline-danger"
+              :disabled="input.options.length === 1"
+              @click="deleteNode(k)"
+            >
+              <font-awesome-icon :icon="['fas', 'trash-alt']"/>
+            </button>
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="k === input.options.length - 1"
+              @click="moveOption(k, k+1)"
+            >
+              <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+            </button>
+            <button type="button"
+              class="btn btn-outline-secondary"
+              :disabled="k === input.options.length - 1"
+              @click="moveOption(k, input.options.length - 1)"
+            >
+              <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
+            </button>
+          </div>
         </div>
+
+        <button
+          type="button"
+          class="btn btn-warning w-100"
+          @click="appendOption()"
+        >
+          <font-awesome-icon :icon="['fas', 'plus']"/>
+          <span class="ml-1">Add option</span>
+        </button>
       </div>
   </div>
 </template>
@@ -71,6 +119,18 @@ export default {
   },
 
   methods: {
+    appendOption() {
+      const vm = this;
+
+      vm.input.options.push(_.cloneDeep(vm.defaultOption));
+    },
+
+    deleteOption(index) {
+      const vm = this;
+
+      vm.input.options.splice(index, 1);
+    },
+
     updateInputType(e) {
       const vm = this;
 
@@ -81,6 +141,16 @@ export default {
       } else if (vm.input.options) {
         delete vm.input.options;
       }
+    },
+
+    moveOption(fromIndex, toIndex) {
+      this.move(this.input.options, fromIndex, toIndex);
+    },
+
+    // Utility
+    // TODO: Dry. Move to a helper file
+    move(arr, fromIndex, toIndex) {
+      arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0]);
     },
   },
 };
