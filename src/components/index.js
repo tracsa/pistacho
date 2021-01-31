@@ -13,9 +13,13 @@ import VueExcelXlsx from './VueExcelXlsx'
 
 import {
   mdbInput,
+  mdbBtn,
+  mdbBtnGroup,
 } from "mdbvue";
 
 Vue.component('mdb-input', mdbInput)
+Vue.component('mdb-btn', mdbBtn)
+Vue.component('mdb-btn-group', mdbBtnGroup)
 
 Vue.component('app-form-edit', FormEdit)
 Vue.component('app-form-view', FormView)

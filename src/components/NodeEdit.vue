@@ -38,7 +38,7 @@
           <app-form-edit :form="form"/>
 
           <div class="text-right">
-            <div class="btn-group">
+            <mdb-btn-group size="sm">
               <button
                 type="button"
                 class="btn btn-primary"
@@ -86,7 +86,7 @@
               >
                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
               </button>
-            </div>
+            </mdb-btn-group>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
       <app-input-edit :input="input"/>
 
       <div class="text-right">
-        <div class="btn-group">
+        <mdb-btn-group size="sm">
           <button
             type="button"
             class="btn btn-secondary"
@@ -56,7 +56,7 @@
           >
             <font-awesome-icon :icon="['fas', 'trash-alt']"/>
           </button>
-        </div>
+        </mdb-btn-group>
       </div>
     </div>
   </div>
