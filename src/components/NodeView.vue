@@ -1,5 +1,5 @@
 <template>
-  <div class="card border-secondary w-100">
+  <div class="card border-info w-100">
     <div class="card-body px-3">
 
       <div class="card-title">

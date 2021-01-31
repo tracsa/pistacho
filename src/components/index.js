@@ -11,6 +11,12 @@ import ProcessEdit from './ProcessEdit'
 import ProcessView from './ProcessView'
 import VueExcelXlsx from './VueExcelXlsx'
 
+import {
+  mdbInput,
+} from "mdbvue";
+
+Vue.component('mdb-input', mdbInput)
+
 Vue.component('app-form-edit', FormEdit)
 Vue.component('app-form-view', FormView)
 Vue.component('app-input-edit', InputEdit)

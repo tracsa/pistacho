@@ -9,15 +9,25 @@
 
       <div class="text-right">
         <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            @click="appendInput()"
+            v-if="inputIter === form.inputs.length - 1"
+          >
+            <font-awesome-icon :icon="['fas', 'plus']"/>
+            <span class="ml-1">Add input</span>
+          </button>
+
           <button type="button"
-            class="btn btn-outline-secondary text-dark"
+            class="btn btn-secondary"
             :disabled="inputIter === 0"
             @click="moveInput(inputIter, 0)"
           >
             <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
           </button>
           <button type="button"
-            class="btn btn-outline-secondary text-dark"
+            class="btn btn-secondary"
             :disabled="inputIter === 0"
             @click="moveInput(inputIter, inputIter-1)"
           >
@@ -25,36 +35,26 @@
           </button>
 
           <button type="button"
-            class="btn btn-outline-danger text-dark"
-            :disabled="form.inputs.length === 1"
-            @click="deleteInput(inputIter)"
-          >
-            <font-awesome-icon :icon="['fas', 'trash-alt']"/>
-          </button>
-
-          <button type="button"
-            class="btn btn-outline-secondary text-dark"
+            class="btn btn-secondary"
             :disabled="inputIter === form.inputs.length - 1"
             @click="moveInput(inputIter, inputIter+1)"
           >
             <font-awesome-icon :icon="['fas', 'chevron-down']"/>
           </button>
           <button type="button"
-            class="btn btn-outline-secondary text-dark"
+            class="btn btn-secondary"
             :disabled="inputIter === form.inputs.length - 1"
             @click="moveInput(inputIter, form.inputs.length - 1)"
           >
             <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
           </button>
 
-          <button
-            type="button"
-            class="btn btn-outline-secondary text-dark"
-            @click="appendInput()"
-            v-if="inputIter === form.inputs.length - 1"
+          <button type="button"
+            class="btn btn-danger"
+            :disabled="form.inputs.length === 1"
+            @click="deleteInput(inputIter)"
           >
-            <font-awesome-icon :icon="['fas', 'plus']"/>
-            <span class="ml-1">Add input</span>
+            <font-awesome-icon :icon="['fas', 'trash-alt']"/>
           </button>
         </div>
       </div>

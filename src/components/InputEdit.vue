@@ -1,12 +1,12 @@
 <template>
   <div>
-      <label>Label</label>
-      <input class="form-control"
+      <mdb-input
+        label="Label"
         v-model="input.label"
       />
 
       <label>Type</label>
-      <select class="custom-select"
+      <select class="browser-default custom-select"
         v-model="input.type"
         @change="updateInputType($event)"
       >
@@ -17,8 +17,8 @@
         >{{ option }}</option>
       </select>
 
-      <label>Help text</label>
-      <input class="form-control"
+      <mdb-input
+        label="Help text"
         v-model="input.helpText"
       />
 
@@ -28,27 +28,37 @@
           :key="optionIter"
           class="border-left border-bottom border-warning pl-2 mb-3"
         >
-          <label>Label</label>
-          <input class="form-control"
+          <mdb-input
+            label="Label"
             v-model="option.label"
           />
 
-          <label>Value</label>
-          <input class="form-control"
+          <mdb-input
+            label="Value"
             v-model="option.value"
           />
 
           <div class="text-right">
             <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-warning"
+                @click="appendOption()"
+                v-if="optionIter === input.options.length - 1"
+              >
+                <font-awesome-icon :icon="['fas', 'plus']"/>
+                <span class="ml-1">Add option</span>
+              </button>
+
               <button type="button"
-                class="btn btn-outline-warning text-dark"
+                class="btn btn-warning"
                 :disabled="optionIter === 0"
                 @click="moveOption(i, 0)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-warning text-dark"
+                class="btn btn-warning"
                 :disabled="optionIter === 0"
                 @click="moveOption(optionIter, optionIter-1)"
               >
@@ -56,35 +66,26 @@
               </button>
 
               <button type="button"
-                class="btn btn-outline-danger text-dark"
-                :disabled="input.options.length === 1"
-                @click="deleteOption(optionIter)"
-              >
-                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
-              </button>
-              <button type="button"
-                class="btn btn-outline-warning text-dark"
+                class="btn btn-warning"
                 :disabled="optionIter === input.options.length - 1"
                 @click="moveOption(optionIter, optionIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-warning text-dark"
+                class="btn btn-warning"
                 :disabled="optionIter === input.options.length - 1"
                 @click="moveOption(optionIter, input.options.length - 1)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
               </button>
 
-              <button
-                type="button"
-                class="btn btn-outline-warning text-dark"
-                @click="appendOption()"
-                v-if="optionIter === input.options.length - 1"
+              <button type="button"
+                class="btn btn-danger"
+                :disabled="input.options.length === 1"
+                @click="deleteOption(optionIter)"
               >
-                <font-awesome-icon :icon="['fas', 'plus']"/>
-                <span class="ml-1">Add option</span>
+                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
               </button>
             </div>
           </div>

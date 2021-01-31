@@ -6,7 +6,7 @@
 
         <div class="d-flex justify-content-around">
           <button type="button"
-            class="btn btn-outline-secondary"
+            class="btn btn-secondary"
             disabled
           >
             <font-awesome-icon :icon="['fas', 'upload']"/>
@@ -16,7 +16,7 @@
           <vue-excel-xlsx
             :sheets="sheets"
             :filename="filename"
-            class="btn btn-outline-secondary"
+            class="btn btn-secondary"
             :disabled="editingProcess === true"
           >
             <font-awesome-icon :icon="['fas', 'file-export']"/>
@@ -36,7 +36,7 @@
 
         <div class="btn-group">
           <button type="button"
-            class="btn btn-outline-success"
+            class="btn btn-success"
             @click="editingProcess = false"
             v-if="editingProcess"
           >
@@ -44,7 +44,7 @@
           </button>
 
           <button type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-primary"
             @click="editingProcess = true"
             v-else
           >
@@ -58,14 +58,8 @@
 
     <div class="row no-gutters mb-3">
       <div class="col text-center">
-        <div class="card bg-success text-white">
-          <div class="card-body">
-            <div class="card-text">
-              <font-awesome-icon :icon="['fas', 'flag']" class="mr-1"/>
-              <span>Start Here</span>
-            </div>
-          </div>
-        </div>
+          <font-awesome-icon :icon="['fas', 'flag']" class="mr-1"/>
+          <span>Your process starts here</span>
       </div>
     </div>
 
@@ -90,15 +84,25 @@
 
           <div class="text-right">
             <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-info"
+                @click="appendNode()"
+                v-if="nodeIter === nodes.length - 1"
+              >
+                <font-awesome-icon :icon="['fas', 'plus']"/>
+                <span class="ml-1">Add node</span>
+              </button>
+
               <button type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-info"
                 :disabled="nodeIter === 0"
                 @click="moveNode(nodeIter, 0)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-up']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-info"
                 :disabled="nodeIter === 0"
                 @click="moveNode(nodeIter, nodeIter-1)"
               >
@@ -106,50 +110,40 @@
               </button>
 
               <button type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-info"
                 @click="editedNode = null"
                 v-if="nodeIter === editedNode"
               >
                 <font-awesome-icon :icon="['fas', 'save']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-info"
                 @click="editedNode = nodeIter"
                 v-else
               >
                 <font-awesome-icon :icon="['fas', 'pencil-alt']"/>
               </button>
-
               <button type="button"
-                class="btn btn-outline-danger"
-                :disabled="nodes.length === 1"
-                @click="deleteNode(nodeIter)"
-              >
-                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
-              </button>
-              <button type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-info"
                 :disabled="nodeIter === nodes.length - 1"
                 @click="moveNode(nodeIter, nodeIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
-                class="btn btn-outline-secondary"
+                class="btn btn-info"
                 :disabled="nodeIter === nodes.length - 1"
                 @click="moveNode(nodeIter, nodes.length - 1)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
               </button>
 
-              <button
-                type="button"
-                class="btn btn-outline-secondary"
-                @click="appendNode()"
-                v-if="nodeIter === nodes.length - 1"
+              <button type="button"
+                class="btn btn-danger"
+                :disabled="nodes.length === 1"
+                @click="deleteNode(nodeIter)"
               >
-                <font-awesome-icon :icon="['fas', 'plus']"/>
-                <span class="ml-1">Add node</span>
+                <font-awesome-icon :icon="['fas', 'trash-alt']"/>
               </button>
             </div>
           </div>

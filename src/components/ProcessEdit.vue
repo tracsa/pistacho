@@ -2,15 +2,15 @@
   <div class="card border-dark w-100">
     <div class="card-body">
       <div class="card-title">
-        <label>Title</label>
-        <input class="form-control"
+        <mdb-input
+          label="Title"
           v-model="process.title"
         />
 
         <hr/>
 
-        <label>Description</label>
-        <input class="form-control"
+        <mdb-input
+          label="Description"
           v-model="process.description"
         />
       </div>
