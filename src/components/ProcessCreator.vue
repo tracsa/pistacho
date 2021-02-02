@@ -260,9 +260,34 @@ export default {
     sheets() {
       const vm = this;
 
+      const forms = []
+      vm.nodes.filter(x => x.forms).map(x => {
+        x.forms.forEach(f => {
+          forms.push(f);
+        });
+      });
+
+      const formSheets = [];
+      forms.forEach((f, index) => {
+        formSheets.push({
+          name: `form_${index}`,
+          columns: [
+            {
+              field: 'type',
+              label: 'Type',
+            },
+            {
+              field: 'label',
+              label: 'Label',
+            },
+          ],
+          data: f.inputs,
+        });
+      });
+
       return [
         {
-          name: 'Process definition',
+          name: 'process_definition',
           columns: [
             {
               field: 'type',
@@ -279,7 +304,7 @@ export default {
           ],
           data: vm.nodes,
         },
-      ];
+      ].concat(formSheets);
     },
   },
 
