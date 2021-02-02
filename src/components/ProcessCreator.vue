@@ -287,7 +287,7 @@ export default {
 
       return [
         {
-          name: 'process_definition',
+          name: 'nodes',
           columns: [
             {
               field: 'type',
