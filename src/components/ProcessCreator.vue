@@ -340,6 +340,10 @@ export default {
             label: 'Optional',
           },
           {
+            field: 'helpText',
+            label: 'Help text',
+          },
+          {
             field: 'options',
             label: 'Options',
           },
@@ -409,6 +413,7 @@ export default {
                 ref: iRef,
                 type: i.type,
                 optional:  i.optional ? 'yes' : 'no',
+                helpText:  i.helpText,
                 label: i.label,
                 options: null,
               }) - 1;
