@@ -260,51 +260,172 @@ export default {
     sheets() {
       const vm = this;
 
-      const forms = []
-      vm.nodes.filter(x => x.forms).map(x => {
-        x.forms.forEach(f => {
-          forms.push(f);
-        });
+      const sheets = [];
+
+      const nodesIndex = sheets.push({
+        name: 'nodes',
+        columns: [
+          {
+            field: 'ref',
+            label: 'Ref',
+          },
+          {
+            field: 'type',
+            label: 'Type',
+          },
+          {
+            field: 'title',
+            label: 'Title',
+          },
+          {
+            field: 'description',
+            label: 'Description',
+          },
+          {
+            field: 'forms',
+            label: 'Forms',
+          },
+        ],
+        data: [],
+      }) - 1;
+
+      const formsIndex = sheets.push({
+        name: 'forms',
+        columns: [
+          {
+            field: 'ref',
+            label: 'Ref',
+          },
+          {
+            field: 'multiple',
+            label: 'Multiple',
+          },
+          {
+            field: 'title',
+            label: 'Title',
+          },
+          {
+            field: 'description',
+            label: 'Description',
+          },
+          {
+            field: 'inputs',
+            label: 'Inputs',
+          },
+        ],
+        data: [],
+      }) - 1;
+
+      const inputsIndex = sheets.push({
+        name: 'inputs',
+        columns: [
+          {
+            field: 'ref',
+            label: 'Ref',
+          },
+          {
+            field: 'type',
+            label: 'Type',
+          },
+          {
+            field: 'label',
+            label: 'Label',
+          },
+          {
+            field: 'options',
+            label: 'Options',
+          },
+        ],
+        data: [],
+      }) - 1;
+
+      const optionsIndex = sheets.push({
+        name: 'options',
+        columns: [
+          {
+            field: 'ref',
+            label: 'Ref',
+          },
+          {
+            field: 'value',
+            label: 'Value',
+          },
+          {
+            field: 'label',
+            label: 'Label',
+          },
+        ],
+        data: [],
+      }) - 1;
+
+      vm.nodes.forEach((n, nI) => {
+        const nRef = `n${nI}`;
+
+        const cNodeI = sheets[nodesIndex].data.push({
+          ref: nRef,
+          type: n.type,
+          title: n.title,
+          description: n.description,
+          forms: null,
+        }) - 1;
+
+        if (n.forms) {
+          n.forms.forEach((f, fI) => {
+            const fRef = `${nRef}f${fI}`;
+
+            if (sheets[nodesIndex].data[cNodeI].forms) {
+              sheets[nodesIndex].data[cNodeI].forms += ',' + fRef;
+            } else {
+              sheets[nodesIndex].data[cNodeI].forms = fRef;
+            }
+
+            const cFormI = sheets[formsIndex].data.push({
+              ref: fRef,
+              multiple:  f.multiple ? 'yes' : 'no',
+              title: f.title,
+              description: f.description,
+              inputs: null,
+            }) - 1;
+
+            f.inputs.forEach((i, iI) => {
+              const iRef = `${fRef}i${iI}`;
+
+              if (sheets[formsIndex].data[cFormI].inputs) {
+                sheets[formsIndex].data[cFormI].inputs += ',' + iRef;
+              } else {
+                sheets[formsIndex].data[cFormI].inputs = iRef;
+              }
+
+              const cInputI = sheets[inputsIndex].data.push({
+                ref: iRef,
+                type: i.type,
+                label: i.label,
+                options: null,
+              }) - 1;
+
+              if (i.options) {
+                i.options.forEach((o, oI) => {
+                  const oRef = `${iRef}o${oI}`;
+
+                  if (sheets[inputsIndex].data[cInputI].options) {
+                    sheets[inputsIndex].data[cInputI].options += ',' + oRef;
+                  } else {
+                    sheets[inputsIndex].data[cInputI].options = oRef;
+                  }
+
+                  sheets[optionsIndex].data.push({
+                    ref: oRef,
+                    value: o.value,
+                    label: o.label,
+                  });
+                });
+              }
+            });
+          });
+        }
       });
 
-      const formSheets = [];
-      forms.forEach((f, index) => {
-        formSheets.push({
-          name: `form_${index}`,
-          columns: [
-            {
-              field: 'type',
-              label: 'Type',
-            },
-            {
-              field: 'label',
-              label: 'Label',
-            },
-          ],
-          data: f.inputs,
-        });
-      });
-
-      return [
-        {
-          name: 'nodes',
-          columns: [
-            {
-              field: 'type',
-              label: 'Type',
-            },
-            {
-              field: 'title',
-              label: 'Title',
-            },
-            {
-              field: 'description',
-              label: 'Description',
-            },
-          ],
-          data: vm.nodes,
-        },
-      ].concat(formSheets);
+      return sheets;
     },
   },
 
