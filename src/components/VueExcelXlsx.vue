@@ -26,9 +26,7 @@ export default {
     exportExcel() {
       const wb = XLSX.utils.book_new()
       this.sheets.forEach(sheet => {
-        if (sheet.columns.length === 0 || sheet.data.length === 0){
-          console.log(`Columns or data of sheet '${sheet.name}' missing! Sheet skipped.`);
-        } else {
+        if (sheet.columns.length !== 0 && sheet.data.length !== 0) {
           let createXLSLFormatObj = [];
           let newXlsHeader = [];
           sheet.columns.forEach(value => {
