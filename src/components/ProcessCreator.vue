@@ -285,6 +285,10 @@ export default {
             field: 'forms',
             label: 'Forms',
           },
+          {
+            field: 'milestone',
+            label: 'Milestone',
+          },
         ],
         data: [],
       }) - 1;
@@ -332,6 +336,10 @@ export default {
             label: 'Label',
           },
           {
+            field: 'optional',
+            label: 'Optional',
+          },
+          {
             field: 'options',
             label: 'Options',
           },
@@ -367,6 +375,7 @@ export default {
           title: n.title,
           description: n.description,
           forms: null,
+          milestone: n.milestone ? 'yes' : 'no',
         }) - 1;
 
         if (n.forms) {
@@ -399,6 +408,7 @@ export default {
               const cInputI = sheets[inputsIndex].data.push({
                 ref: iRef,
                 type: i.type,
+                optional:  i.optional ? 'yes' : 'no',
                 label: i.label,
                 options: null,
               }) - 1;
