@@ -1,7 +1,7 @@
 <template>
-    <button @click="exportExcel">
-        <slot></slot>
-    </button>
+  <button @click="exportExcel">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
