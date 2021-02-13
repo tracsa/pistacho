@@ -64,11 +64,11 @@
     </div>
 
     <span
-      v-for="node,nodeIter in nodes"
+      v-for="node,nodeIter in process.nodes"
       :key="nodeIter"
     >
       <div class="row no-gutters mb-3"
-        v-if="nodeIter < nodes.length"
+        v-if="nodeIter < process.nodes.length"
       >
         <div class="col text-center">
           <font-awesome-icon :icon="['fas', 'arrow-down']"/>
@@ -88,7 +88,7 @@
                 type="button"
                 class="btn btn-info"
                 @click="appendNode()"
-                v-if="nodeIter === nodes.length - 1"
+                v-if="nodeIter === process.nodes.length - 1"
               >
                 <font-awesome-icon :icon="['fas', 'plus']"/>
                 <span class="ml-1">Add node</span>
@@ -125,22 +125,22 @@
               </button>
               <button type="button"
                 class="btn btn-info"
-                :disabled="nodeIter === nodes.length - 1"
+                :disabled="nodeIter === process.nodes.length - 1"
                 @click="moveNode(nodeIter, nodeIter+1)"
               >
                 <font-awesome-icon :icon="['fas', 'chevron-down']"/>
               </button>
               <button type="button"
                 class="btn btn-info"
-                :disabled="nodeIter === nodes.length - 1"
-                @click="moveNode(nodeIter, nodes.length - 1)"
+                :disabled="nodeIter === process.nodes.length - 1"
+                @click="moveNode(nodeIter, process.nodes.length - 1)"
               >
                 <font-awesome-icon :icon="['fas', 'angle-double-down']"/>
               </button>
 
               <button type="button"
                 class="btn btn-danger"
-                :disabled="nodes.length === 1"
+                :disabled="process.nodes.length === 1"
                 @click="deleteNode(nodeIter)"
               >
                 <font-awesome-icon :icon="['fas', 'trash-alt']"/>
@@ -162,54 +162,53 @@ export default {
       process: {
         title: 'A brand new process to know about you',
         description: 'A basic process to ask about one\'s personal life.',
+        nodes: [
+          {
+            type: 'action',
+            title: 'Personal information',
+            description: 'Start a new process by doing this task. Tell us about you.',
+            forms: [
+              {
+                inputs: [
+                  {
+                    type: 'text',
+                    label: 'Your name',
+                    helpText: 'A simple input. Just enter your name',
+                  },
+                ],
+              },
+              {
+                inputs: [
+                  {
+                    type: 'text',
+                    label: 'What do you like to do?',
+                    helpText: 'Write whatever you like',
+                  },
+                  {
+                    type: 'select',
+                    label: 'Which currency do you use more often?',
+                    helpText: 'Choose any option',
+                    options: [
+                      {
+                        label: 'Peso mexicano',
+                        value: 'MXN',
+                      },
+                      {
+                        label: 'US dolar',
+                        value: 'USD',
+                      },
+                      {
+                        label: 'Euro',
+                        value: 'EUR',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
-
-      nodes: [
-        {
-          type: 'action',
-          title: 'Personal information',
-          description: 'Start a new process by doing this task. Tell us about you.',
-          forms: [
-            {
-              inputs: [
-                {
-                  type: 'text',
-                  label: 'Your name',
-                  helpText: 'A simple input. Just enter your name',
-                },
-              ],
-            },
-            {
-              inputs: [
-                {
-                  type: 'text',
-                  label: 'What do you like to do?',
-                  helpText: 'Write whatever you like',
-                },
-                {
-                  type: 'select',
-                  label: 'Which currency do you use more often?',
-                  helpText: 'Choose any option',
-                  options: [
-                    {
-                      label: 'Peso mexicano',
-                      value: 'MXN',
-                    },
-                    {
-                      label: 'US dolar',
-                      value: 'USD',
-                    },
-                    {
-                      label: 'Euro',
-                      value: 'EUR',
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        }
-      ],
 
       editedNode: null,
       editingProcess: false,
@@ -370,7 +369,7 @@ export default {
         data: [],
       }) - 1;
 
-      vm.nodes.forEach((n, nI) => {
+      vm.process.nodes.forEach((n, nI) => {
         const nRef = `n${nI}`;
 
         const cNodeI = sheets[nodesIndex].data.push({
@@ -448,18 +447,18 @@ export default {
     appendNode() {
       const vm = this;
 
-      vm.nodes.push(_.cloneDeep(vm.defaultNode));
-      vm.editedNode = vm.nodes.length - 1;
+      vm.process.nodes.push(_.cloneDeep(vm.defaultNode));
+      vm.editedNode = vm.process.nodes.length - 1;
     },
 
     deleteNode(index) {
       const vm = this;
 
-      vm.nodes.splice(index, 1);
+      vm.process.nodes.splice(index, 1);
     },
 
     moveNode(fromIndex, toIndex) {
-      this.move(this.nodes, fromIndex, toIndex);
+      this.move(this.process.nodes, fromIndex, toIndex);
     },
 
     // Utility
