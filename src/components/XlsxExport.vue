@@ -8,8 +8,6 @@
 import XLSX from 'xlsx/xlsx';
 
 export default {
-  name: "vue-excel-xlsx",
-
   props: {
     sheets: {
       type: Array,
@@ -18,7 +16,7 @@ export default {
     filename: {
       type: String,
       default: 'excel',
-    }
+    },
   },
 
   methods: {
