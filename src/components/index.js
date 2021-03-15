@@ -10,6 +10,7 @@ import ProcessCreator from './ProcessCreator'
 import ProcessEdit from './ProcessEdit'
 import ProcessView from './ProcessView'
 import XlsxExport from './XlsxExport'
+import XmlExport from './XmlExport'
 
 import {
   mdbInput,
@@ -31,3 +32,4 @@ Vue.component('app-process-creator', ProcessCreator)
 Vue.component('app-process-edit', ProcessEdit)
 Vue.component('app-process-view', ProcessView)
 Vue.component('app-xlsx-export', XlsxExport)
+Vue.component('app-xml-export', XmlExport)
