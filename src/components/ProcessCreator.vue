@@ -291,6 +291,16 @@ export default {
                   elements: [
                     {
                       type: 'element',
+                      name: 'author',
+                      elements: [
+                        {
+                          type: 'text',
+                          text: 'Pistacho',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'element',
                       name: 'name',
                       elements: [
                         {
@@ -306,6 +316,16 @@ export default {
                         {
                           type: 'text',
                           text: vm.process.description,
+                        },
+                      ],
+                    },
+                    {
+                      type: 'element',
+                      name: 'public',
+                      elements: [
+                        {
+                          type: 'text',
+                          text: 'true',
                         },
                       ],
                     },
