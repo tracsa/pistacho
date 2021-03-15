@@ -22,6 +22,16 @@
             <font-awesome-icon :icon="['fas', 'file-export']"/>
             <span class="ml-1">Export to .xlsx</span>
           </app-xlsx-export>
+
+          <app-xml-export
+            :tree="tree"
+            :filename="filename"
+            class="btn btn-secondary"
+            :disabled="editingProcess === true"
+          >
+            <font-awesome-icon :icon="['fas', 'file-export']"/>
+            <span class="ml-1">Export to .xml</span>
+          </app-xml-export>
         </div>
       </div>
     </div>
@@ -156,6 +166,7 @@
 <script>
 import _ from 'lodash';
 import XLSX from 'xlsx/xlsx';
+import convert from 'xml-js';
 
 export default {
   data() {
@@ -255,6 +266,172 @@ export default {
   computed: {
     filename() {
       return _.kebabCase(this.process.title);
+    },
+
+    tree() {
+      const vm = this;
+
+      const tree = convert.json2xml(
+        {
+          declaration: {
+            attributes: {
+              version: '1.0',
+              encoding: 'utf-8',
+            }
+          },
+
+          elements: [
+            {
+              type: 'element',
+              name: 'process-spec',
+              elements: [
+                {
+                  type: 'element',
+                  name: 'process-info',
+                  elements: [
+                    {
+                      type: 'element',
+                      name: 'name',
+                      elements: [
+                        {
+                          type: 'text',
+                          text: vm.process.title,
+                        },
+                      ],
+                    },
+                    {
+                      type: 'element',
+                      name: 'description',
+                      elements: [
+                        {
+                          type: 'text',
+                          text: vm.process.description,
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'element',
+                  name: 'process',
+                  elements: vm.process.nodes.map((n, nI) => {
+                    const nRef = `n${nI}`;
+
+                    const nodeTree = {
+                      type: 'element',
+                      name: n.type,
+                      attributes: {
+                        id: nRef,
+                      },
+                      elements: [
+                        {
+                          type: 'element',
+                          name: 'node-info',
+                          elements: [
+                            {
+                              type: 'element',
+                              name: 'name',
+                              elements: [
+                                {
+                                  type: 'text',
+                                  text: n.title,
+                                },
+                              ],
+                            },
+                            {
+                              type: 'element',
+                              name: 'description',
+                              elements: [
+                                {
+                                  type: 'text',
+                                  text: n.description,
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          type: 'element',
+                          name: 'auth-filter',
+                          attributes: {
+                            backend: 'anyone',
+                          },
+                        },
+                      ],
+                    };
+
+                    if (n.forms) {
+                      nodeTree.elements.push(
+                        {
+                          type: 'element',
+                          name: 'form-array',
+                          elements: n.forms.map((f, fI) => {
+                            const fRef = `${nRef}f${fI}`;
+
+                            return {
+                              type: 'element',
+                              name: 'form',
+                              attributes: {
+                                id: fRef,
+                              },
+                              elements: f.inputs.map((i, iI) => {
+                                const iRef = `${fRef}i${iI}`;
+
+                                const inputTree = {
+                                  type: 'element',
+                                  name: 'input',
+                                  attributes: {
+                                    type: i.type,
+                                    label: i.label,
+                                    name: iRef,
+                                    required: 'required',
+                                  },
+                                };
+
+                                if (i.options) {
+                                  inputTree.elements = [
+                                    {
+                                      type: 'element',
+                                      name: 'options',
+                                      elements: i.options.map((o) => ({
+                                        type: 'element',
+                                        name: 'option',
+                                        attributes: {
+                                          value: o.value,
+                                        },
+                                        elements: [
+                                          {
+                                            type: 'text',
+                                            text: o.label,
+                                          },
+                                        ],
+                                      })),
+                                    },
+                                  ];
+                                }
+
+                                return inputTree;
+                              }),
+                            };
+                          }),
+                        },
+                      )
+                    }
+
+                    return nodeTree;
+                  }),
+                },
+              ],
+            }
+          ],
+        },
+        {
+          compact: false,
+          ignoreComment: true,
+          spaces: 2,
+        },
+      );
+      return tree;
     },
 
     sheets() {
