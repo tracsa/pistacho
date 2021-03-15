@@ -9,16 +9,15 @@ import XLSX from 'xlsx/xlsx';
 
 export default {
   name: "vue-excel-xlsx",
+
   props: {
     sheets: {
       type: Array,
-      default: () => {
-        return [ { name: 'SheetName', columns: [], data: [] } ]
-      }
+      required: true,
     },
     filename: {
       type: String,
-      default: 'excel'
+      default: 'excel',
     }
   },
 

@@ -13,7 +13,7 @@
             <span class="ml-1">Upload an existing process</span>
           </button>
 
-          <vue-excel-xlsx
+          <app-xlsx-export
             :sheets="sheets"
             :filename="filename"
             class="btn btn-secondary"
@@ -21,7 +21,7 @@
           >
             <font-awesome-icon :icon="['fas', 'file-export']"/>
             <span class="ml-1">Export to .xlsx</span>
-          </vue-excel-xlsx>
+          </app-xlsx-export>
         </div>
       </div>
     </div>
@@ -155,6 +155,7 @@
 
 <script>
 import _ from 'lodash';
+import XLSX from 'xlsx/xlsx';
 
 export default {
   data() {
@@ -466,6 +467,23 @@ export default {
     move(arr, fromIndex, toIndex) {
       arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0]);
     },
+
+    importExcel(event) {
+      var input = event.target;
+      var reader = new FileReader();
+      reader.onload = () => {
+        var fileData = reader.result;
+        var wb = XLSX.read(fileData, {type : 'binary'});
+        wb.SheetNames.forEach((sheetName) => {
+          var rowObj = XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
+          this.excelData.push({
+            name: sheetName,
+            data: rowObj,
+          });
+        })
+      };
+      reader.readAsBinaryString(input.files[0]);
+    }
   },
 };
 </script>
