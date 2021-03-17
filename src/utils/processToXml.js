@@ -56,7 +56,7 @@ function buildNode(rawNode) {
           return buildForm(form);
         }),
       },
-    )
+    );
   }
 
   return built;
