@@ -2,6 +2,80 @@ import convert from 'xml-js';
 
 const DEFAULT_AUTHOR = 'Pistacho';
 
+function buildProcess(rawProcess) {
+  return {
+    declaration: {
+      attributes: {
+        version: '1.0',
+        encoding: 'utf-8',
+      }
+    },
+
+    elements: [
+      {
+        type: 'element',
+        name: 'process-spec',
+        elements: [
+          {
+            type: 'element',
+            name: 'process-info',
+            elements: [
+              {
+                type: 'element',
+                name: 'author',
+                elements: [
+                  {
+                    type: 'text',
+                    text: DEFAULT_AUTHOR,  // TODO: define in process
+                  },
+                ],
+              },
+              {
+                type: 'element',
+                name: 'name',
+                elements: [
+                  {
+                    type: 'text',
+                    text: rawProcess.title,
+                  },
+                ],
+              },
+              {
+                type: 'element',
+                name: 'description',
+                elements: [
+                  {
+                    type: 'text',
+                    text: rawProcess.description,
+                  },
+                ],
+              },
+              {
+                type: 'element',
+                name: 'public',
+                elements: [
+                  {
+                    type: 'text',
+                    text: 'true',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'element',
+            name: 'process',
+            elements: rawProcess.nodes.map((node, nI) => {
+              node.id = `n${nI}`;  // TODO: define in node
+              return buildNode(node);
+            }),
+          },
+        ],
+      }
+    ],
+  };
+}
+
 function buildNode(rawNode) {
   const built = {
     type: 'element',
@@ -119,77 +193,7 @@ function buildOption(rawOption) {
 
 export function processToXml(process) {
   const converted = convert.json2xml(
-    {
-      declaration: {
-        attributes: {
-          version: '1.0',
-          encoding: 'utf-8',
-        }
-      },
-
-      elements: [
-        {
-          type: 'element',
-          name: 'process-spec',
-          elements: [
-            {
-              type: 'element',
-              name: 'process-info',
-              elements: [
-                {
-                  type: 'element',
-                  name: 'author',
-                  elements: [
-                    {
-                      type: 'text',
-                      text: DEFAULT_AUTHOR,  // TODO: define in process
-                    },
-                  ],
-                },
-                {
-                  type: 'element',
-                  name: 'name',
-                  elements: [
-                    {
-                      type: 'text',
-                      text: process.title,
-                    },
-                  ],
-                },
-                {
-                  type: 'element',
-                  name: 'description',
-                  elements: [
-                    {
-                      type: 'text',
-                      text: process.description,
-                    },
-                  ],
-                },
-                {
-                  type: 'element',
-                  name: 'public',
-                  elements: [
-                    {
-                      type: 'text',
-                      text: 'true',
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: 'element',
-              name: 'process',
-              elements: process.nodes.map((node, nI) => {
-                node.id = `n${nI}`;  // TODO: define in node
-                return buildNode(node);
-              }),
-            },
-          ],
-        }
-      ],
-    },
+    buildProcess(process),
     {
       compact: false,
       ignoreComment: true,
