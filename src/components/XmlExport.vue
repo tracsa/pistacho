@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    tree: {
+    xmlString: {
       type: String,
       required: true,
     },
@@ -22,7 +22,7 @@ export default {
       var element = document.createElement('a');
       element.setAttribute(
         'href',
-        'data:text/plain;charset=utf-8,' + encodeURIComponent(this.tree),
+        'data:text/plain;charset=utf-8,' + encodeURIComponent(this.xmlString),
       );
       element.setAttribute(
         'download',

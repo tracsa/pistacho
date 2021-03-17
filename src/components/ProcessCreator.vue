@@ -24,7 +24,7 @@
           </app-xlsx-export>
 
           <app-xml-export
-            :tree="tree"
+            :xmlString="convertedXml"
             :filename="filename"
             class="btn btn-secondary"
             :disabled="editingProcess === true"
@@ -268,7 +268,7 @@ export default {
       return _.kebabCase(this.process.title);
     },
 
-    tree() {
+    convertedXml() {
       return processToXml(this.process);
     },
 
