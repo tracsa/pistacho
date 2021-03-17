@@ -2,8 +2,123 @@ import convert from 'xml-js';
 
 const DEFAULT_AUTHOR = 'Pistacho';
 
+function buildNode(rawNode) {
+  const built = {
+    type: 'element',
+    name: rawNode.type,
+    attributes: {
+      id: rawNode.id,
+    },
+    elements: [
+      {
+        type: 'element',
+        name: 'node-info',
+        elements: [
+          {
+            type: 'element',
+            name: 'name',
+            elements: [
+              {
+                type: 'text',
+                text: rawNode.title,
+              },
+            ],
+          },
+          {
+            type: 'element',
+            name: 'description',
+            elements: [
+              {
+                type: 'text',
+                text: rawNode.description,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'element',
+        name: 'auth-filter',
+        attributes: {
+          backend: 'anyone',
+        },
+      },
+    ],
+  };
+
+  if (rawNode.forms) {
+    built.elements.push(
+      {
+        type: 'element',
+        name: 'form-array',
+        elements: rawNode.forms.map((form, fI) => {
+          form.id = `${rawNode.id}f${fI}`;  // TODO: define in form
+          return buildForm(form);
+        }),
+      },
+    )
+  }
+
+  return built;
+}
+
+function buildForm(rawForm) {
+  return {
+    type: 'element',
+    name: 'form',
+    attributes: {
+      id: rawForm.id,
+    },
+    elements: rawForm.inputs.map((input, iI) => {
+      input.name = `${rawForm.id}i${iI}`;  // TODO: define in input
+      return buildInput(input);
+    }),
+  };
+}
+
+function buildInput(rawInput) {
+  const built = {
+    type: 'element',
+    name: 'input',
+    attributes: {
+      type: rawInput.type,
+      label: rawInput.label,
+      name: rawInput.name,
+      required: 'required',  // TODO: define in input
+    },
+  };
+
+  if (rawInput.options) {
+    built.elements = [
+      {
+        type: 'element',
+        name: 'options',
+        elements: rawInput.options.map(option => buildOption(option)),
+      },
+    ];
+  }
+
+  return built;
+}
+
+function buildOption(rawOption) {
+  return {
+    type: 'element',
+    name: 'option',
+    attributes: {
+      value: rawOption.value,
+    },
+    elements: [
+      {
+        type: 'text',
+        text: rawOption.label,
+      },
+    ],
+  };
+}
+
 export function processToXml(process) {
-  const tree = convert.json2xml(
+  const converted = convert.json2xml(
     {
       declaration: {
         attributes: {
@@ -27,7 +142,7 @@ export function processToXml(process) {
                   elements: [
                     {
                       type: 'text',
-                      text: DEFAULT_AUTHOR,
+                      text: DEFAULT_AUTHOR,  // TODO: define in process
                     },
                   ],
                 },
@@ -66,111 +181,9 @@ export function processToXml(process) {
             {
               type: 'element',
               name: 'process',
-              elements: process.nodes.map((n, nI) => {
-                const nRef = `n${nI}`;
-
-                const nodeTree = {
-                  type: 'element',
-                  name: n.type,
-                  attributes: {
-                    id: nRef,
-                  },
-                  elements: [
-                    {
-                      type: 'element',
-                      name: 'node-info',
-                      elements: [
-                        {
-                          type: 'element',
-                          name: 'name',
-                          elements: [
-                            {
-                              type: 'text',
-                              text: n.title,
-                            },
-                          ],
-                        },
-                        {
-                          type: 'element',
-                          name: 'description',
-                          elements: [
-                            {
-                              type: 'text',
-                              text: n.description,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: 'element',
-                      name: 'auth-filter',
-                      attributes: {
-                        backend: 'anyone',
-                      },
-                    },
-                  ],
-                };
-
-                if (n.forms) {
-                  nodeTree.elements.push(
-                    {
-                      type: 'element',
-                      name: 'form-array',
-                      elements: n.forms.map((f, fI) => {
-                        const fRef = `${nRef}f${fI}`;
-
-                        return {
-                          type: 'element',
-                          name: 'form',
-                          attributes: {
-                            id: fRef,
-                          },
-                          elements: f.inputs.map((i, iI) => {
-                            const iRef = `${fRef}i${iI}`;
-
-                            const inputTree = {
-                              type: 'element',
-                              name: 'input',
-                              attributes: {
-                                type: i.type,
-                                label: i.label,
-                                name: iRef,
-                                required: 'required',
-                              },
-                            };
-
-                            if (i.options) {
-                              inputTree.elements = [
-                                {
-                                  type: 'element',
-                                  name: 'options',
-                                  elements: i.options.map((o) => ({
-                                    type: 'element',
-                                    name: 'option',
-                                    attributes: {
-                                      value: o.value,
-                                    },
-                                    elements: [
-                                      {
-                                        type: 'text',
-                                        text: o.label,
-                                      },
-                                    ],
-                                  })),
-                                },
-                              ];
-                            }
-
-                            return inputTree;
-                          }),
-                        };
-                      }),
-                    },
-                  )
-                }
-
-                return nodeTree;
+              elements: process.nodes.map((node, nI) => {
+                node.id = `n${nI}`;  // TODO: define in node
+                return buildNode(node);
               }),
             },
           ],
@@ -183,5 +196,5 @@ export function processToXml(process) {
       spaces: 2,
     },
   );
-  return tree;
+  return converted;
 }
